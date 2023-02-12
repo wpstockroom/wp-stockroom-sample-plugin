@@ -1,3 +1,5 @@
+# When creating a release upload a newly created zip to the stockroom.
+# See https://github.com/wpstockroom/github-action#readme for details.
 name: Deploy to self hosted WP Stockroom
 on:
   release:

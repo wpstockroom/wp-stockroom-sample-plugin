@@ -1,6 +1,8 @@
-This is a bare minimum plugin example for a theme to use the WP Stockroom updater.
+# WP Stockroom Sample Plugin
 
-# Required files
+This is a bare minimum plugin example for a plugin to use the WP Stockroom updater.
+
+## Required files
 
  - [readme.txt](readme.txt)
    - Only the _Stable tag_ is required.
@@ -15,17 +17,38 @@ This is a bare minimum plugin example for a theme to use the WP Stockroom update
    - Here is a list of all (optional) [plugin headers](https://developer.wordpress.org/plugins/plugin-basics/header-requirements/).
    - Includes the `class-wp-stockroom-updater.php` script.
    - Then registers the updater.
+ - [.github/workflows/deployment.yml](.github/workflows/deployment.yml)  
+   The Github action that triggers when creating a new version. See the [Github action](https://github.com/wpstockroom/github-action#readme) repository for details. 
 
-# Registering the updater
+## Registering the updater
 
 ```php
 include_once __DIR__ .'/class-wp-stockroom-updater.php'; // Include the updater script in some way.
 add_filter( "update_plugins_YOURDOMAINHERE.COM", array( 'WP_Stockroom_Updater', 'check_update' ),10, 4 );
 ```
 
-# Customization.
+## Releasing a new version
 
-## Customizing the slug.
+When you are ready to release a new version. Do the following steps.
+
+ - Update the _"Version"_ header in your [MAINP-PLUGIN-FILE.php](wp-stockroom-sample-plugin.php).
+ - Update the _"Stable tag"_ in your [readme.txt](readme.txt).
+ - Push that to Github.
+ - On Github, create a new release and a new tag.  
+   The default setup triggers on new release, but that can be changed in [.github/workflows/deployment.yml](.github/workflows/deployment.yml)
+   by changing the [on](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on).
+
+Now in the background Github action will create a new Zip and upload that zip and the readme.txt to your own Stockroom.
+
+## FAQ
+
+### The update doesn't appear.
+- Is the plugin active? Otherwise, it won't check for updates.
+- On the wp-admin updates page is a _Check again._ Button, but this can still have a 1~2 minute cache.
+
+## Customization.
+
+### Customizing the slug.
 
 By default, the updater will check the slug of your plugin folder. So in this same plugin is will look for `wp-stockroom-sample-plugin`
 If you rename the plugin you will still have to point the updater to the original slug. You can change the slug during the update process.
@@ -46,9 +69,3 @@ add_filter( 'wp_stockroom_updater_slug', function ( $package_slug, $current_data
 	return 'wp-stockroom-sample-theme';
 }, 10, 3 );
 ```
-
-# FAQ
-
-## The update doesn't appear.
-- Is the plugin active? Otherwise, it won't check for updates.
-- On the wp-admin updates page is a _Check again._ Button, but this can still have a 1~2 minute cache.
