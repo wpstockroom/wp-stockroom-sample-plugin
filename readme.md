@@ -18,7 +18,9 @@ This is a bare minimum plugin example for a plugin to use the WP Stockroom updat
    - Includes the `class-wp-stockroom-updater.php` script.
    - Then registers the updater.
  - [.github/workflows/deployment.yml](.github/workflows/deployment.yml)  
-   The Github action that triggers when creating a new version. See the [Github action](https://github.com/wpstockroom/github-action#readme) repository for details. 
+   The Github action that triggers when creating a new version. See the [Github action](https://github.com/wpstockroom/github-action#readme) repository for details.
+ - [.distignore](.distignore)
+   What files to exclude form the build plugin.zip file. Technically not needed, strongly recommended.
 
 ## Registering the updater
 

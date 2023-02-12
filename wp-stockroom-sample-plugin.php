@@ -2,7 +2,7 @@
 /*
 Plugin Name: Self Hosted Plugin updates
 Update URI:  wpstockroom.com
-Version: 0.10.2
+Version: 0.10.3
 */
 
 include_once __DIR__ .'/class-wp-stockroom-updater.php';
